@@ -1,4 +1,4 @@
-# Implementation Mistakes by Devs: Why you should not use useEffect
+# Implementation Mistakes by Devs: Why you should not use `useEffect`
 
 The `useEffect` hook in React is a versatile tool for functional components. It helps with tasks like fetching data or updating the webpage. But, like any tool, it's important to use it wisely. Using `useEffect` too often can clutter your code. While it's great for certain tasks, it's not always the best choice. You need to be smart about when and how you use it to keep your React code clean and efficient.
 
@@ -70,11 +70,11 @@ function CoffeeMaker() {
 
 export default CoffeeMaker;
 ```
-In this example, we want to make coffee when both water and coffeeBeans are true. But we only include water in the dependency array of useEffect. So, if we add water, the effect runs, but even if we then add coffee beans, the effect doesn't run again because it's not watching for changes in coffeeBeans. This can lead to unexpected behavior.
+In this example, we want to make coffee when both water and coffeeBeans are true. But we only include water in the dependency array of `useEffect`. So, if we add water, the effect runs, but even if we then add coffee beans, the effect doesn't run again because it's not watching for changes in coffeeBeans. This can lead to unexpected behavior.
 
 ## Stale Closures
 
-Think of a closure like a little bubble that contains some information. In React, when you use useEffect, you're creating these bubbles that capture the values of variables from your component. But if those values change later on, the bubbles still remember the old values, which can cause problems. This is what we call a "stale closure."
+Think of a closure like a little bubble that contains some information. In React, when you use `useEffect`, you're creating these bubbles that capture the values of variables from your component. But if those values change later on, the bubbles still remember the old values, which can cause problems. This is what we call a "stale closure."
 Let's break it down with a simple example:
 
 ```javascript
@@ -111,9 +111,9 @@ function Counter() {
 
 export default Counter;
 ```
-Here, we have a simple counter component that increments the count every time you click a button. We also have a useEffect that logs the current count every second.
-Now, the problem here is that the console.log inside useEffect captures the count variable. But since useEffect only runs once (because of the empty dependency array []), it captures the initial value of count, which is 0. Even if count changes later when you click the button, the closure inside useEffect still remembers the old value, so it always logs 0.
-To fix this issue and make sure useEffect captures the updated value of count, we need to include count in the dependency array:
+Here, we have a simple counter component that increments the count every time you click a button. We also have a `useEffect` that logs the current count every second.
+Now, the problem here is that the console.log inside `useEffect` captures the count variable. But since `useEffect` only runs once (because of the empty dependency array []), it captures the initial value of count, which is 0. Even if count changes later when you click the button, the closure inside `useEffect` still remembers the old value, so it always logs 0.
+To fix this issue and make sure `useEffect` captures the updated value of count, we need to include count in the dependency array:
 
 ```javascript
 useEffect(() => {
@@ -132,9 +132,9 @@ useEffect(() => {
   return () => clearInterval(intervalId);
 }, [count]); // Now, useEffect depends on count
 ```
-Now, whenever count changes, useEffect will run again with the updated value, and the closure won't become stale anymore.
+Now, whenever count changes, `useEffect` will run again with the updated value, and the closure won't become stale anymore.
 
-### ** Instead of using useEffect, there are other approaches you can consider:
+### ** Instead of using `useEffect`, there are other approaches you can consider:
 
 ## Use Memoization
 
@@ -217,6 +217,6 @@ In this example, useFetchData encapsulates the logic for fetching data from an A
 
 ## Conclusion
 
-So, useEffect in React is like a handy tool that helps you do things after your components have rendered. But, like any tool, it has its tricky parts. By knowing the common mistakes and doing things the right way, you can make the most out of useEffect without messing up your code. Just remember to use it wisely, tidy up after you're done with it, be careful with what you put in its dependency list, and don't use it too much for managing your state.
+So, `useEffect` in React is like a handy tool that helps you do things after your components have rendered. But, like any tool, it has its tricky parts. By knowing the common mistakes and doing things the right way, you can make the most out of `useEffect` without messing up your code. Just remember to use it wisely, tidy up after you're done with it, be careful with what you put in its dependency list, and don't use it too much for managing your state.
 
 *For further insights on React development best practices, check out [React Official Documentation](https://reactjs.org/docs/getting-started.html).*
