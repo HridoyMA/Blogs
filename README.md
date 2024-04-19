@@ -1,6 +1,6 @@
 # Implementation Mistakes by Devs: Why you should not use `useEffect`
 
-The `useEffect` hook in React is a versatile tool for functional components. It helps with tasks like fetching data or updating the webpage. But, like any tool, it's important to use it wisely. Using `useEffect` too often can clutter your code. While it's great for certain tasks, it's not always the best choice. You need to be smart about when and how you use it to keep your React code clean and efficient.
+The `useEffect` hook in React is a versatile tool for functional components. It takes two arguments: the first is a function containing the code for the side effect, and the second is an optional array of dependencies. If provided, the effect will re-run only if any of the dependencies change between renders, otherwise, it will run after every render. It helps with tasks like fetching data or updating the webpage. But, like any tool, it's important to use it wisely. Using `useEffect` too often can clutter your code. While it's great for certain tasks, it's not always the best choice. You need to be smart about when and how you use it to keep your React code clean and efficient.
 
 ##  Unnecessary Performance Impact
 
